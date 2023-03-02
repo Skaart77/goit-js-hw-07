@@ -32,7 +32,7 @@ function createGalleryMarkup(galleryItems){
 
 // Відкриваємо модальне вікно з великим зображенням
 picturesContainer.addEventListener('click', event => {
-    event.preventDefault();// Забороняємо стандартну дію по кліку на посиланні
+    event.preventDefault();// Забороняємо клік на посиланні
     
     if (event.target.nodeName !== "IMG") {
         return;
@@ -48,23 +48,24 @@ picturesContainer.addEventListener('click', event => {
 
 instance.show()
 
-document.addEventListener('keydown', onEscKeyPress);
-
 instance.element().addEventListener('click', event =>{
     if (event.target.nodeName === "IMG") {
         instance.close();
     }
 });
 
-});
-
-// Робимо закриття модалки через ESC
+// Закриття модалки через ESC
+document.addEventListener('keydown', onEscKeyPress);
 
 function onEscKeyPress(event){
     if (event.code === "Escape") {
-        onCloseModal();
+        instance.close();
         document.removeEventListener('keydown', onEscKeyPress);
 
     }
-    console.log(event);
+    console.log(event.code);
 }
+});
+
+
+
